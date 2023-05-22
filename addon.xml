@@ -1,4 +1,4 @@
-<addon id="script.harmony.control" name="Harmony Hub Controller" provider-name="pkscout" version="0.2.4">
+<addon id="script.harmony.control" name="Harmony Hub Controller" provider-name="pkscout" version="0.2.5">
 	<requires>
 		<import addon="xbmc.python" version="3.0.0" />
 		<import addon="script.module.requests" version="2.22.0+matrix.1" />
@@ -8,6 +8,9 @@
 		<provides>executable</provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">
+		<news>v.0.2.5
+- Activities and commands can be delayed before being activated
+		</news>
 		<news>v.0.2.4
 - activity selection is now a pick list instead of a text box
 - code clean up

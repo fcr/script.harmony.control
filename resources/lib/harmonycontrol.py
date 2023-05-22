@@ -45,7 +45,12 @@ class Main:
         self.SETTINGS = loadSettings()
         self.DIALOG = xbmcgui.Dialog()
         self.MYHUB = HubControl(
-            self.SETTINGS['hub_ip'], thetimeout=self.SETTINGS['timeout'], delay=self.SETTINGS['delay'])
+            self.SETTINGS['hub_ip'], 
+            thetimeout=self.SETTINGS['timeout'], 
+            delay=self.SETTINGS['delay'],
+            activity_delay=self.SETTINGS['activity_delay'],
+            command_delay=self.SETTINGS['command_delay']
+            )
 
     def _get_mappings(self):
         self.LW.log(['the settings mappings are:', self.SETTINGS['mappings']])

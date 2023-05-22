@@ -43,6 +43,20 @@
 						<heading>32102</heading>
 					</control>
 				</setting>
+				<setting help="" id="activity_delay" label="32303" type="integer">
+					<level>0</level>
+					<default>0</default>
+					<control format="integer" type="edit">
+						<heading>32303</heading>
+					</control>
+				</setting>
+				<setting help="" id="command_delay" label="32304" type="integer">
+					<level>0</level>
+					<default>0</default>
+					<control format="integer" type="edit">
+						<heading>32304</heading>
+					</control>
+				</setting>
 				<setting help="" id="delay" label="32107" type="integer">
 					<level>0</level>
 					<default>250</default>

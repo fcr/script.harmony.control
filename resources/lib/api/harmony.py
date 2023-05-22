@@ -13,10 +13,12 @@ except:
 
 class HubControl:
 
-    def __init__(self, hub_ip, thetimeout=30, delay=250):
+    def __init__(self, hub_ip, thetimeout=30, delay=250, activity_delay=0, command_delay=0 ):
         self.HUBIP = hub_ip
         self.TIMEOUT = thetimeout
         self.DELAY = delay / 1000
+        self.ACTIVITY_DELAY = activity_delay / 1000
+        self.COMMAND_DELAY = command_delay / 1000
         self.HUBID = ''
         self.CONFIG = {}
         self.COMMANDS = {}
@@ -37,6 +39,15 @@ class HubControl:
         self.LOGLINES.extend(['the commands passed in are: %s' % cmds_str])
         results = []
         r_cmds = self._parse_cmds(cmds_str)
+
+        if self.COMMAND_DELAY > 0:
+            self.LOGLINES.append('Delay applied before commands is {}'.format(self.COMMAND_DELAY))
+            if MONITOR:
+                if MONITOR.waitForAbort(self.COMMAND_DELAY):
+                    return [], self.LOGLINES
+            else:
+                time.sleep(self.COMMAND_DELAY)
+        
         for r_cmd in r_cmds:
             if r_cmd == 'pause':
                 if MONITOR:
@@ -65,6 +76,15 @@ class HubControl:
         self.LOGLINES.append('the activity id is %s' % activity_id)
         if not activity_id:
             return None
+
+        if self.ACTIVITY_DELAY > 0:
+            self.LOGLINES.append('Delay applied before activity {} is {}'.format(activity, self.ACTIVITY_DELAY))
+            if MONITOR:
+                if MONITOR.waitForAbort(self.ACTIVITY_DELAY):
+                    return [], self.LOGLINES
+            else:
+                time.sleep(self.ACTIVITY_DELAY)
+        
         hub_cmd = {}
         hub_cmd['cmd'] = 'vnd.logitech.harmony/vnd.logitech.harmony.engine?startactivity'
         hub_cmd['id'] = '0'
